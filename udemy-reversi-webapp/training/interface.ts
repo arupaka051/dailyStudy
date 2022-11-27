@@ -2,7 +2,11 @@ const STONE = 0;
 const PAPER = 1;
 const SCISSORS = 2;
 
-class RandomHandGenerator {
+interface HandGenerator {
+  generate(): number 
+}
+
+class RandomHandGenerator implements HandGenerator {
   generate(): number {
   return Math.floor(Math.random() * 3)
   }
@@ -14,8 +18,7 @@ class RandomHandGenerator {
 
 class Janken {
 
-  play() {
-    const handGenerator = new RandomHandGenerator();
+  play(handGenerator: HandGenerator) {
 
     const computerHand = handGenerator.generate();
 
@@ -27,5 +30,17 @@ class Janken {
 
 }
 
-const janken = new Janken();
-janken.play();
+const janken = new Janken()
+
+const generator = new RandomHandGenerator();
+janken.play(generator)
+
+class StoneHandGenerator implements HandGenerator {
+  generate(): number {
+    return STONE
+  
+  }
+}
+
+const generator2 = new StoneHandGenerator()
+janken.play(generator2)

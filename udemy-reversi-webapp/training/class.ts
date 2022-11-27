@@ -1,37 +1,34 @@
 class Flaction {
-  private _numerator: number;
-  private _denominator: number;
-
-  constructor(numerator: number, denominator: number){
-    this._numerator = numerator;
-    this._denominator = denominator;
+  
+  constructor(private _numerator: number, private _denominator: number) {
+  }
+  
+  toString(): string {
+    return `${this._numerator}/${this._denominator}`
   }
 
   add(other: Flaction): Flaction {
     const resultNumerator = 
       this._numerator * other._denominator +
-      this._denominator * other._numerator;
-    const resultDominator = this._denominator * other._denominator;
+      this._denominator * other._numerator
+    const resultDdenominator = this._denominator * other._denominator
 
-    return new Flaction(resultNumerator, resultDominator);
-  }
+    return new Flaction(resultNumerator, resultDdenominator)
 
-  toString() {
-    return `${this._numerator}/${this._denominator}`;
-  }
-
+  } 
   get numerator() {
-    return this._numerator;
-  }
-
+    return this._numerator
+    }
   get denominator() {
-    return this._denominator;
-  }
-
-  get returnName() {
-    return this._denominator;
-  }
+    return this._denominator
+    }
 }
+const f1 = new Flaction(1, 2)
+console.log(f1.numerator)
+console.log(f1.denominator)
 
-const s1 = new Flaction(1,2);
-console.log(s1.returnName);
+const f2 = new Flaction(1, 3)
+console.log(f2.toString())
+
+const result = f1.add(f2)
+console.log(result.toString())
